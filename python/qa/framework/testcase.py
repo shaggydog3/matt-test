@@ -2,11 +2,12 @@
 
 """Classes and methods for controlling test cases."""
 
+from unittest import TestCase
+
 import os
 import time
 
 from qa.framework import harness
-from unittest import TestCase
 
 
 class ComponentTestCase(TestCase):
@@ -48,3 +49,8 @@ class TestAppTestCase(ComponentTestCase):
 
         self.testapp = harness.TestAppHarness(os.path.join(self.reporoot, 'python', 'app'
                                                            , 'test_app.py'))
+
+    def assertGoodExitCode(self):
+        """assert that the exit code from the test app is good (0)."""
+
+        self.assertEqual(self.testapp.exit_code, 0, msg="The exit code was not equal to 0.")

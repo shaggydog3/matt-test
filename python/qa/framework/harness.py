@@ -14,12 +14,13 @@ class ProcessHarness(object):
         """
 
         self.cmd = cmd
+        self.exit_code = None
         self.launch()
 
     def launch(self):
         """Launch the process."""
 
-        subprocess.call(self.cmd)
+        self.exit_code = subprocess.call(self.cmd)
 
 
 class TestAppHarness(ProcessHarness):
