@@ -9,3 +9,5 @@ class BasicTest(TestAppTestCase):
         """Test the basic running of the app with no options, or input."""
 
         self.run_app()
+        self.printlog(self.testapp.exit_code)
+        self.assertGoodExitCode()
