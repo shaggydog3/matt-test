@@ -1,6 +1,6 @@
 """Tests validating the basic functionality of testapp."""
 
-from qa.framework.testcase import TestAppTestCase
+from matttest.framework.testcase import TestAppTestCase
 
 class BasicTest(TestAppTestCase):
     """Basics tests of the test_app functionality."""
