@@ -7,7 +7,7 @@ from unittest import TestCase
 import os
 import time
 
-from qa.framework import harness
+from matttest.framework import harness
 
 
 class ComponentTestCase(TestCase):
@@ -21,7 +21,7 @@ class ComponentTestCase(TestCase):
         self.test_path_name = self.id()
         self.test_name = self.test_path_name.split('.')[-1:][0]
         self.framework_dir = os.path.dirname(__file__)
-        self.reporoot = '/{0}'.format(os.path.join(*self.framework_dir.split('/')[:-3]))
+        self.reporoot = '/{0}'.format(os.path.join(*self.framework_dir.split('/')[:-2]))
 
     def printlog(self, message, logtype='DEBUG'):
         """A simple method to output a log message to standard out during the test.
@@ -30,7 +30,7 @@ class ComponentTestCase(TestCase):
         log system.
         """
 
-        print '\n{0} {1}: {2}'.format(time.asctime(), logtype, message)
+        print('\n{0} {1}: {2}'.format(time.asctime(), logtype, message))
 
 
 class TestAppTestCase(ComponentTestCase):
@@ -47,8 +47,9 @@ class TestAppTestCase(ComponentTestCase):
     def run_app(self):
         """Run the teset app."""
 
-        self.testapp = harness.TestAppHarness(os.path.join(self.reporoot, 'python', 'app'
-                                                           , 'test_app.py'))
+        self.testapp = harness.TestAppHarness(os.path.join(self.reporoot,
+                                                           'helloworld',
+                                                           'helloworld.py'))
 
     def assertGoodExitCode(self):
         """assert that the exit code from the test app is good (0)."""

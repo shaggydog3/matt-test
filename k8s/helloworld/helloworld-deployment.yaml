@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: helloworld
+spec:
+  selector:
+    matchLabels:
+      component: test
+  template:
+    metadata:
+      labels:
+        component: test
+    spec:
+      containers:
+        - name: helloworld
+          image: shaggydog/helloworld:latest
+          imagePullPolicy: Always

@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: matttest
+spec:
+  template:
+    metadata:
+      labels:
+        component: harness
+    spec:
+      containers:
+        - name: matttest
+          image: shaggydog/matttest:latest
+          imagePullPolicy: Always
+      restartPolicy: Never

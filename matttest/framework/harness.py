@@ -1,33 +1,19 @@
 """Contains a set of classes for manipulating test applications."""
 
-import subprocess
+import yaml
+
+from kubernetes import client, config
+
+class KubernetesHarness(object):
+    """A harness for a kubernetes container."""
+
+    def __init__(self):
+        config.load_kube_config()
 
 
-class ProcessHarness(object):
-    """This is the base class for a process harness."""
+class DeploymentHarness(KubernetesHarness):
+    """A harness for operating with a deployment."""
 
-    def __init__(self, cmd):
-        """Initialize and launch the process.
-
-        Args:
-            cmd: The full path/filename of the process to run.
-        """
-
-        self.cmd = cmd
-        self.exit_code = None
-        self.launch()
-
-    def launch(self):
-        """Launch the process."""
-
-        self.exit_code = subprocess.call(self.cmd)
-
-
-class TestAppHarness(ProcessHarness):
-    """Harness for running the test_app.
-
-    TODO: This is a template for now.  This will be expanded as the functionality of
-    the test_app develops."""
-
-    def __init__(self, cmd):
-        super(TestAppHarness, self).__init__(cmd)
+    def __init__(self):
+        with open(self.conf_file) as this_conf_file:
+            self.dep_conf = yaml.safe_load(this_conf_file)

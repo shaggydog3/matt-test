@@ -1,1 +1,6 @@
 *.pyc
+.DS_Store
+.env
+.idea
+
+__pycache__/
