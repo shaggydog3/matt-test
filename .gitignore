@@ -1,1 +1,8 @@
 *.pyc
+.DS_Store
+.env
+.idea
+/scratch
+
+.pytest_cache
+__pycache__/
